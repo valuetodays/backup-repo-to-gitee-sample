@@ -1,0 +1,27 @@
+name: Sync Github Repos To Gitee
+
+on:
+  push:
+    branches: 
+      - master
+      - main
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    # UTC 20:00 -> CST (China) 4:00, see https://datetime360.com/cn/utc-cst-china-time/
+    - cron: '0 20 * * *'
+  pull_request:
+    branches: master
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+    # https://github.com/marketplace/actions/sync-gitee-mirror
+    - name: sync-gitee-mirror
+      uses: valuetodays/sync-gitee-mirror@master
+      with:
+        repository: valuetodays/sync-gitee-mirror-test
+#        username: ${{ secrets.USERNAME }}
+        username: valuetodays
+        password: ${{ secrets.GITEE_TOKEN }}
+        
