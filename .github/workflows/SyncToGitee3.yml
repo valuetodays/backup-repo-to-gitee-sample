@@ -17,11 +17,13 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
     # https://github.com/marketplace/actions/sync-gitee-mirror
-    - name: sync-gitee-mirror
+    - name: vt-backup-repo-to-gitee
       uses: valuetodays/sync-gitee-mirror@master
       with:
-        repository: valuetodays/sync-gitee-mirror-test
-#        username: ${{ secrets.USERNAME }}
-        username: valuetodays
-        password: ${{ secrets.GITEE_TOKEN }}
+        # default is github repo name
+        giteerepo: sync-gitee-mirror-test1
+        # default is github user name
+        giteeuser: valuetodays
+        # must not be empty
+        giteetoken: ${{ secrets.GITEE_TOKEN }}
         
