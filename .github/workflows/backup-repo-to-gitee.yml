@@ -5,20 +5,13 @@ on:
     branches: 
       - master
       - main
-  schedule:
-    # * is a special character in YAML so you have to quote this string
-    # UTC 20:00 -> CST (China) 4:00, see https://datetime360.com/cn/utc-cst-china-time/
-    - cron: '0 20 * * *'
-  pull_request:
-    branches: master
 
 jobs:
   build:
     runs-on: ubuntu-20.04
     steps:
-    # https://github.com/marketplace/actions/sync-gitee-mirror
-    - name: vt-backup-repo-to-gitee
-      uses: valuetodays/sync-gitee-mirror@master
+    - name: backup-repo-to-gitee
+      uses: valuetodays/backup-repo-to-gitee@master
       with:
         # default is github repo name
         giteerepo: sync-gitee-mirror-test1
