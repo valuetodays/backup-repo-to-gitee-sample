@@ -5,7 +5,7 @@ backup-repo-to-gitee-sample
 此文件内容在.github/workflows/backup-repo-to-gitee.yml中。
 
 ```yml
-name: Sync Github Repos To Gitee
+name: backup-repo-to-gitee
 
 on:
   push:
@@ -15,15 +15,16 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
-    - name: backup-repo-to-gitee
+    # https://github.com/marketplace/actions/sync-gitee-mirror
+    - name: vt-backup-repo-to-gitee
       uses: valuetodays/backup-repo-to-gitee@master
       with:
         # default is github repo name
-        giteerepo: sync-gitee-mirror-test1
+#        giteerepo: sync-gitee-mirror-test1
         # default is github user name
-        giteeuser: valuetodays
+#        giteeuser: valuetodays
         # must not be empty
         giteetoken: ${{ secrets.GITEE_TOKEN }}
         
